@@ -1,0 +1,286 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05.03.2018, 10:01:41
+    Author     : Teilnehmer2
+*/
+
+/*http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126 Verhindern von bestimmten Voreinstellungen eines Browsers*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*neue Formatierung*/
+
+/*index*/
+
+#wrapper_index{
+    background-image:url("#{resource['img/restaurant.jpg']}");
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+
+
+a{
+    color:white;
+    font-weight:bolder;
+    text-decoration: none;
+    font-size: 21px;
+}
+
+
+#menulist{
+    background-color:rgba(17,12,7,0.8);
+    width:50%;
+    color:white;
+    margin-left:50px;
+}
+
+
+#menulist td{
+    padding-left:30px;
+}
+
+
+#menulist th{
+    font-weight: bolder;
+    font-size:15pt;
+}
+
+
+#menulist input[type=submit]{
+    width:50px;
+    margin-left:8px;
+}
+
+
+#selection{
+    background-color:rgba(17,12,7,0.8);
+    width:35%;
+    color:white;
+    margin-left:15px;
+    float:right;
+    margin-top:50px;
+    position:absolute;
+    top:35px;
+    right:150px;
+}
+
+
+#logout input[type=submit]{
+    width:10%;
+    position:fixed;
+    right:20px;
+}
+
+
+/*login*/
+#wrapper_login{
+    background-image:url("#{resource['img/login.jpg']}");
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+
+#log{
+    background-color: black;
+    color:white;
+    position:absolute;
+    top:50px;
+    left:50px;
+    width: 400px;
+}
+
+
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+input[type=submit]:hover{
+    background-color: #45a049;
+}
+
+
+input[type=submit]{
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bolder;
+    font-size:13pt;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/*registration*/
+#wrapper_registration{
+    background-image:url("#{resource['img/registration.jpg']}");
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+
+
+#inPerson{
+    background-color: green;
+    color:white;
+    position:absolute;
+    top:70px;
+    left:100px;
+    width: 400px;
+    font-size:11pt;
+}
+
+
+#inPerson input[type=text], #inPerson input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height:40px;
+}
+
+
+#inPerson input[type=submit]{
+    width: 60%;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bolder;
+    font-size:11pt;
+    padding-top:10px;
+    margin: 10px 80px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height:35px;
+}
+
+
+#inPerson input[type=submit]:hover{
+    background-color: #45a049;
+}
+
+
+#language{
+    width:10%;
+    position:absolute;
+    right:75px;
+}
+
+
+#subheading{
+    font-size:18pt;
+    font-weight: bolder;
+    color:green;
+    margin-left:100px;
+    margin-top:20px;
+    display:block;
+}
+
+
+#send a{
+    color:black;
+}
+
+
+#send input[type=submit]{
+    width:30%;
+}
+
+
+/*summary*/
+
+#wrapper_summary{
+    background-image:url("#{resource['img/summary.jpg']}");
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+
+#menulist_summary{
+    background-color:rgba(17,12,7,0.8);
+    width:50%;
+    color:white;
+    margin-left:50px;
+    margin-top:70px;
+}
+
+
+#menulist_summary td{
+    padding-left:50px;
+}
+
+
+#menulist_summary th{
+    font-weight: bolder;
+    font-size:15pt;
+    padding-left:50px;
+}
+
+
+#menulist_summary input[type=submit]{
+    width:50px;
+    margin-left:8px;
+}
+
+
+#customer_summary{
+    background-color:rgba(17,12,7,0.8);
+    width:65%;
+    color:white;
+    margin-left:50px;
+    margin-top:150px;
+    margin-bottom:80px;
+}
+
+
+#customer_summary th{
+    font-weight: bolder;
+    font-size:15pt;
+    padding-left:50px;
+}
+
+
+#customer_summary td{
+    padding-left:50px;
+}
+
+
+.summary_subheading{
+    font-size:25pt;
+}
+
+
+

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ 
+    <application>   
+        <locale-config>
+            <default-locale>de</default-locale>
+            <supported-locale>en</supported-locale>
+            <supported-locale>es</supported-locale>          
+        </locale-config>  
+        <resource-bundle>
+            <base-name>/messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>messages</message-bundle>   
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <!--<from-action>
+                #{loginBean.login}
+            </from-action>-->
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <!--<from-action>
+                #{loginBean.login}
+            </from-action>-->
+            <from-outcome>success</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

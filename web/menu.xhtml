@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:megaMenu style="margin-top:20px">
+            <p:submenu label="Produkte" icon="ui-icon-check">
+                <p:column>
+                    <p:submenu label="Accessoires">
+                        <p:commandLink>
+                        <p:menuitem value="Brillen" url="articleoverview.xhtml" />
+                        <f:setPropertyActionListener value="#{selected}" target="#{articleCtrl.selectedList}"/>
+                        </p:commandLink>
+                        <p:menuitem value="Parfum" url="#" />
+                        <p:menuitem value="Taschen" url="#" />
+                    </p:submenu>
+                    <p:submenu label="Kleider">
+                        <p:menuitem value="Business" url="#" />
+                        <p:menuitem value="Casual" url="#" />
+                        <p:menuitem value="Maxikleider" url="#" />
+                        <p:menuitem value="Party" url="#" />
+                    </p:submenu>
+                </p:column>
+                <p:column>
+                    <p:submenu label="Oberteile">
+                        <p:menuitem value="Blusen" url="#" />
+                        <p:menuitem value="Pullover" url="#" />
+                        <p:menuitem value="Shirts" url="#" />
+                        <p:menuitem value="Tunika" url="#" />
+                    </p:submenu>
+                    <p:submenu label="Schuhe">
+                        <p:menuitem value="Boots" url="#" />
+                        <p:menuitem value="Pumps" url="#" />
+                        <p:menuitem value="High Heels" url="#" />
+                        <p:menuitem value="Sneaker" url="#" />
+                    </p:submenu>
+                </p:column>
+                <p:column>
+                    <p:graphicImage url="image?articleno=2587587558" width="150"/>
+                    <p:graphicImage url="image?articleno=2487587579" width="150"/>
+                    <p:graphicImage url="image?articleno=3587598566" width="150"/>
+                    <p:graphicImage url="image?articleno=2587587558" width="150"/>
+                </p:column>
+            </p:submenu>
+            <h:commandButton 
+                action="#{localeCtrl.changeLanguage('en')}" 
+                image="#{resource['img:us.gif']}"/>
+            <h:commandButton
+                action="#{localeCtrl.changeLanguage('de')}" 
+                image="#{resource['img:de.gif']}"/>
+        </p:megaMenu>
+    </h:body>
+</html>
+

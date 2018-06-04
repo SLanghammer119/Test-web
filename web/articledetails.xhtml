@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Startseite</title>
+        <h:outputStylesheet library="css" name="bumblebee.css" />
+    </h:head>
+
+    <h:body id="wrapper_index">
+        <h:form id="logout">
+            <h:commandButton value="Logout" action="#{logCtrl.logout()}"/> <br/>
+        </h:form>
+        <h:form id="menulist">
+            <h:dataTable value="#{articleCtrl.articles}" var="a">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Artikel-Nr." />
+                    </f:facet>
+                    <h:outputText value="#{a.articleno}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name" />
+                    </f:facet>
+                    <h:outputText value="#{a.name}" />
+                </h:column>
+                <h:column>
+                    <h:dataTable value="#{a.articlecolors}" var="col">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Beschreibung" />
+                            </f:facet>
+                            <h:outputText value="#{col.color.color}" />
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preis" />
+                    </f:facet>
+                    <h:outputText value="#{a.price} €" />
+                </h:column>
+                <h:column>
+                    <h:graphicImage width="50" height="50" url="image?articleno=#{a.articleno}" />
+                </h:column>
+                <h:column>
+                    <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(a)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <br />
+        <br />
+    </h:body>
+</html>
+

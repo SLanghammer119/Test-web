@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Onlineshop_BumblebeePUM" transaction-type="JTA">
+    <jta-data-source>jdbc/connectionBumblebee</jta-data-source>
+    <class>com.bumblebee.model.Customer</class>
+    <class>com.bumblebee.model.Article</class>
+    <class>com.bumblebee.model.Articlecolor</class>
+    <class>com.bumblebee.model.Articledescriptions</class>
+    <class>com.bumblebee.model.Articlematerials</class>
+    <class>com.bumblebee.model.Articlesize</class>
+    <class>com.bumblebee.model.Bankaccount</class>
+    <class>com.bumblebee.model.Care</class>
+    <class>com.bumblebee.model.Color</class>
+    <class>com.bumblebee.model.Coupon</class>
+    <class>com.bumblebee.model.Creditcard</class>
+    <class>com.bumblebee.model.Deliveryadresses</class>
+    <class>com.bumblebee.model.Description</class>
+    <class>com.bumblebee.model.Material</class>
+    <class>com.bumblebee.model.Order</class>
+    <class>com.bumblebee.model.Orderitem</class>
+    <class>com.bumblebee.model.Primecategory</class>
+    <class>com.bumblebee.model.Shoppingcart</class>
+    <class>com.bumblebee.model.Shoppingitem</class>
+    <class>com.bumblebee.model.Subcategory</class>
+    <class>com.bumblebee.model.Unit</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
