@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bumblebee.servlet;
 
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
@@ -12,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @author Stefanie Langhammer
  *
+ * @author Stefanie Langhammer
  */
-@WebServlet("/image")
-public class ImageServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/imageCare")
+public class ImageServletCare extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 	
 	@PersistenceUnit(name = "Onlineshop_BumblebeePU")
 	private EntityManagerFactory emf;
@@ -34,17 +39,15 @@ public class ImageServlet extends HttpServlet {
     		String articleno = 
     			request.getParameter("articleno");	
 			Query query = 
-				emf.createEntityManager().createQuery(
-					"select i.photo "
-					+ "from Article i "
-					+ "where i.articleno = :articleno");
+				emf.createEntityManager().createQuery("SELECT c.carephoto FROM Care c INNER JOIN c.articles a where a.articleno = :articleno");
+					
 			query.setParameter(
 				"articleno", articleno);
 					
-			byte[] photo = 
+			byte[] carephoto = 
 				(byte[]) query.getSingleResult();
 			response.reset();
-			response.getOutputStream().write(photo);
+			response.getOutputStream().write(carephoto);
 		} catch(Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}

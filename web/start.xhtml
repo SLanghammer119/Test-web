@@ -8,28 +8,6 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form id="form">
-            <p:dataGrid var="a" value="#{articleCtrl.articles}" columns="3" layout="grid"
-                        rows="12" paginator="true" id="cars"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16" >
-                
-                <f:facet name="header">
-                    Produktübersicht
-                </f:facet>
-
-                <p:panel header="#{a.name}" style="text-align:center">
-                    <h:panelGrid columns="1" style="width:100%">
-                        <p:graphicImage height="300" width="300" url="image?articleno=#{a.articleno}"/> 
-
-                        <h:outputText value="#{a.price}" />
-                    </h:panelGrid>
-                </p:panel>
-
-            </p:dataGrid>
-        </h:form>
-
-        
         <p:carousel autoPlayInterval="500" numVisible="1" effect="easeInStrong" headerText="Tabs" style="margin-bottom:0">
         <p:tab title="Godfather Part I">
             <h:panelGrid columns="2" cellpadding="10">

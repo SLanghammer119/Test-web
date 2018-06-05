@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Produktdetails</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:dataGrid var="art" value="#{articleCtrl.articles}" columns="3"
+                        rows="12" paginator="true" id="articles"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Produktübersicht
+                </f:facet>
+
+                <p:panel style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:commandLink update=":form:articleDetail" oncomplete="PF('articleDialog').show()" title="#{art.name}">
+                            <p:graphicImage height="300" width="300" url="image?articleno=#{art.articleno}"/>
+                            <f:setPropertyActionListener value="#{art}" target="#{articleCtrl.selectedarticle}" />
+                        </p:commandLink> 
+                        <h:outputText value="#{art.name}" />
+                        <h:outputText value="#{art.price}">
+                            <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
+                        </h:outputText>
+                        <p:dataGrid columns="1" value="#{art.articlecolors}" var="colors">
+                            <h:outputText value="#{colors.color.color}" />
+                        </p:dataGrid>
+
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+
+            <p:dialog width="800" height="900" header="#{articleCtrl.selectedarticle.name}" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="articleDetail" style="text-align:center;">
+                    <p:panelGrid  columns="1" rendered="#{not empty articleCtrl.selectedarticle}" columnClasses="label,value">
+                        <f:facet name="header" >
+                            <p:graphicImage height="300" width="300" url="image?articleno=#{articleCtrl.selectedarticle.articleno}"/>
+                        </f:facet>
+
+
+                        <h:outputText value="#{articleCtrl.selectedarticle.name}" />
+
+
+                        <h:outputText value="#{articleCtrl.selectedarticle.price}" >
+                            <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
+                        </h:outputText>
+                        <h:outputText value="FARBE:" />
+                        <p:dataGrid var="colors" value="#{articleCtrl.selectedarticle.articlecolors}">
+                            <h:outputText value="#{colors.color.color}"/>
+                        </p:dataGrid>
+                        <h:outputText value="GRÖSSE" />
+                        <p:dataGrid var="sizes" value="#{articleCtrl.selectedarticle.articlesizes}">
+                            <h:outputText value="#{sizes.unit.unit}" />
+                        </p:dataGrid>
+                        <h:outputText value="Artikelbeschreibung:" />
+                        <p:dataGrid var="des" value="#{articleCtrl.selectedarticle.articledescriptions}">
+                            <h:outputText value="- #{des.description.feature}" /> 
+                        </p:dataGrid>
+                        <h:outputText value="Material:" />
+                        <p:dataGrid var="mat" value="#{articleCtrl.selectedarticle.articlematerials}">
+                            <h:outputText value=" - #{mat.material.material}"/>
+                        </p:dataGrid>
+                        <h:outputText value="Pflegehinweis:"/> 
+                        <p:graphicImage height="" width="" url="imageCare?articleno=#{articleCtrl.selectedarticle.articleno}"/>
+                        <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(articleCrtl.selectedarticle)}"/>
+                        
+                        
+                        <h:form>
+                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                <h:outputText value="FARBE:" />
+                                <p:selectOneButton value="#{articleCtrl.selectedarticle}">
+                                    <p:dataGrid value="#{articleCtrl.selectedarticle}"
+                                    <f:selectItem itemLabel="Xbox One" itemValue="#{}Xbox One" />
+                                    <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                                    <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                                </p:selectOneButton>
+
+                                <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                                <p:spacer />
+
+                                <h:outputText value="Selected:" />
+                                <h:outputText id="display" value="#{selectOneView.option}" style="font-weight: bold" />
+                            </h:panelGrid>
+                        </h:form>
+                    
+                        
+                        
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

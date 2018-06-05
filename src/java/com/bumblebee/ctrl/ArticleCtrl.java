@@ -27,7 +27,7 @@ public class ArticleCtrl implements Serializable {
     @EJB
     DatabaseBean databaseBean;
 
-    private Article article;
+    private Article selectedarticle;
     private List<Article> articles;
     private List<Article> accessoires;
     private List<Article> dresses;
@@ -91,6 +91,7 @@ public class ArticleCtrl implements Serializable {
 
     @PostConstruct
     public void fillArticles() {
+        this.selectedarticle = new Article();
         this.articles = databaseBean.getAllArticles();
         this.accessoires = databaseBean.getOnePrimecategory("Accessoires");
         this.dresses = databaseBean.getOnePrimecategory("Kleider");
@@ -134,13 +135,15 @@ public class ArticleCtrl implements Serializable {
         this.databaseBean = databaseBean;
     }
 
-    public Article getArticle() {
-        return article;
+    public Article getSelectedarticle() {
+        return selectedarticle;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setSelectedarticle(Article selectedarticle) {
+        this.selectedarticle = selectedarticle;
     }
+
+    
 
     public List<Article> getAccessoires() {
         return accessoires;
