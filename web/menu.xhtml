@@ -6,16 +6,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+         <h:outputStylesheet library="awesome/css" name="font-awesome.css"/>
     </h:head>
     <h:body>
+     
         <p:megaMenu style="margin-top:20px">
             <p:submenu label="Produkte" icon="ui-icon-check">
                 <p:column>
                     <p:submenu label="Accessoires">
-                        <p:commandLink>
+                       
                         <p:menuitem value="Brillen" url="articleoverview.xhtml" />
-                        <f:setPropertyActionListener value="#{selected}" target="#{articleCtrl.selectedList}"/>
-                        </p:commandLink>
+                       
                         <p:menuitem value="Parfum" url="#" />
                         <p:menuitem value="Taschen" url="#" />
                     </p:submenu>
@@ -47,13 +48,17 @@
                     <p:graphicImage url="image?articleno=2587587558" width="150"/>
                 </p:column>
             </p:submenu>
-            <h:commandButton 
-                action="#{localeCtrl.changeLanguage('en')}" 
-                image="#{resource['img:us.gif']}"/>
-            <h:commandButton
-                action="#{localeCtrl.changeLanguage('de')}" 
-                image="#{resource['img:de.gif']}"/>
+            <p:menuitem icon="fa fa-shopping-cart" action="#{localeCtrl.changeLanguage('en')}" url="shoppingcart.xhtml" />
+           
+          
         </p:megaMenu>
+        
+        <p:stack icon="/resources/img/de.gif" expanded="false">
+            <p:menuitem icon="fa fa-shopping-cart" action="#{localeCtrl.changeLanguage('en')}" url="registration.xhtml" />
+          </p:stack>     
+        
+       
+       
     </h:body>
 </html>
 

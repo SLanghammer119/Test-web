@@ -8,24 +8,12 @@ package com.bumblebee.ctrl;
 import com.bumblebee.model.Article;
 import com.bumblebee.model.Shoppingcart;
 import com.bumblebee.model.Shoppingitem;
-import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -46,6 +34,8 @@ public class ShoppingCartCtrl implements Serializable{
 
     @Inject
     LogCtrl logCtrl;
+    
+  
 
     public ShoppingCartCtrl() {
     }
@@ -69,6 +59,8 @@ public class ShoppingCartCtrl implements Serializable{
         shoppingcart.setTotal(total);
         return total;
     }
+
+  
 
 //    public Collection<HttpSession> getMySessions() {
 //        return ActiveSessionListener.getMySession().values();
@@ -110,6 +102,10 @@ public class ShoppingCartCtrl implements Serializable{
             shoppingcart.getShoppingitems().add(shopitem);
         }
     }
+    
+    
+    
+    
     
     
 

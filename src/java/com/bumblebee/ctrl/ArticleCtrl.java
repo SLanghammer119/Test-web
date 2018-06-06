@@ -27,7 +27,6 @@ public class ArticleCtrl implements Serializable {
     @EJB
     DatabaseBean databaseBean;
 
-    private Article selectedarticle;
     private List<Article> articles;
     private List<Article> accessoires;
     private List<Article> dresses;
@@ -86,12 +85,11 @@ public class ArticleCtrl implements Serializable {
         this.pumps = new ArrayList<>();
         this.highheels = new ArrayList<>();
         this.sneaker = new ArrayList<>();
-
     }
 
+    
     @PostConstruct
     public void fillArticles() {
-        this.selectedarticle = new Article();
         this.articles = databaseBean.getAllArticles();
         this.accessoires = databaseBean.getOnePrimecategory("Accessoires");
         this.dresses = databaseBean.getOnePrimecategory("Kleider");
@@ -116,7 +114,6 @@ public class ArticleCtrl implements Serializable {
         this.pumps = databaseBean.getOneSubcategory("Pumps");
         this.highheels = databaseBean.getOneSubcategory("High Heels");
         this.sneaker = databaseBean.getOneSubcategory("Sneaker");
-
     }
 
     public List<Article> getArticles() {
@@ -134,16 +131,6 @@ public class ArticleCtrl implements Serializable {
     public void setDatabaseBean(DatabaseBean databaseBean) {
         this.databaseBean = databaseBean;
     }
-
-    public Article getSelectedarticle() {
-        return selectedarticle;
-    }
-
-    public void setSelectedarticle(Article selectedarticle) {
-        this.selectedarticle = selectedarticle;
-    }
-
-    
 
     public List<Article> getAccessoires() {
         return accessoires;
@@ -305,8 +292,4 @@ public class ArticleCtrl implements Serializable {
         this.selectedList = selectedList;
     }
     
-    
-    
-    
-
 }

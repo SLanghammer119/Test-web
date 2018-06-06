@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Produktdetails</title>
+
     </h:head>
     <h:body>
         <h:form id="form">
@@ -22,7 +23,7 @@
                     <h:panelGrid columns="1" style="width:100%">
                         <p:commandLink update=":form:articleDetail" oncomplete="PF('articleDialog').show()" title="#{art.name}">
                             <p:graphicImage height="300" width="300" url="image?articleno=#{art.articleno}"/>
-                            <f:setPropertyActionListener value="#{art}" target="#{articleCtrl.selectedarticle}" />
+                            <f:setPropertyActionListener value="#{art}" target="#{selectionCtrl.selectedarticle}" />
                         </p:commandLink> 
                         <h:outputText value="#{art.name}" />
                         <h:outputText value="#{art.price}">
@@ -36,65 +37,77 @@
                 </p:panel>
             </p:dataGrid>
 
-            <p:dialog width="800" height="900" header="#{articleCtrl.selectedarticle.name}" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:dialog width="800" height="900" header="#{selectionCtrl.selectedarticle.name}" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="articleDetail" style="text-align:center;">
-                    <p:panelGrid  columns="1" rendered="#{not empty articleCtrl.selectedarticle}" columnClasses="label,value">
+                    <p:panelGrid  columns="1" rendered="#{not empty selectionCtrl.selectedarticle}" columnClasses="label,value">
                         <f:facet name="header" >
-                            <p:graphicImage height="300" width="300" url="image?articleno=#{articleCtrl.selectedarticle.articleno}"/>
+                            <p:graphicImage height="300" width="300" url="image?articleno=#{selectionCtrl.selectedarticle.articleno}"/>
                         </f:facet>
 
 
-                        <h:outputText value="#{articleCtrl.selectedarticle.name}" />
+                        <h:outputText value="#{selectionCtrl.selectedarticle.name}" />
 
 
-                        <h:outputText value="#{articleCtrl.selectedarticle.price}" >
+                        <h:outputText value="#{selectionCtrl.selectedarticle.price}" >
                             <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
                         </h:outputText>
+
                         <h:outputText value="FARBE:" />
-                        <p:dataGrid var="colors" value="#{articleCtrl.selectedarticle.articlecolors}">
-                            <h:outputText value="#{colors.color.color}"/>
-                        </p:dataGrid>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:selectOneButton value="#{selectionCtrl.selectedarticle.color.color}">
+
+                                <f:selectItems value="#{selectionCtrl.selectedarticle.articlecolors}" var="colors" itemLabel="#{colors.color.color}" itemValue="#{colors.color.color}" />
+
+                            </p:selectOneButton>
+
+                            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                            <p:spacer />
+
+                            <h:outputText value="Selected:" />
+                            <h:outputText id="display" value="#{selectionCtrl.selectedarticle.color.color}" style="font-weight: bold" />
+                        </h:panelGrid>
+
                         <h:outputText value="GRÖSSE" />
-                        <p:dataGrid var="sizes" value="#{articleCtrl.selectedarticle.articlesizes}">
-                            <h:outputText value="#{sizes.unit.unit}" />
-                        </p:dataGrid>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:selectOneButton value="#{selectionCtrl.selectedarticle.size.unit}">
+
+                                <f:selectItems value="#{selectionCtrl.selectedarticle.articlesizes}" var="sizes" itemLabel="#{sizes.unit.unit}" itemValue="#{sizes.unit.unit}" />
+
+                            </p:selectOneButton>
+
+                            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                            <p:spacer />
+
+                            <h:outputText value="Selected:" />
+                            <h:outputText id="display" value="#{selectionCtrl.selectedarticle.size.unit}" style="font-weight: bold" />
+                        </h:panelGrid>
+                       
+
                         <h:outputText value="Artikelbeschreibung:" />
-                        <p:dataGrid var="des" value="#{articleCtrl.selectedarticle.articledescriptions}">
+                        <p:dataGrid var="des" value="#{selectionCtrl.selectedarticle.articledescriptions}">
                             <h:outputText value="- #{des.description.feature}" /> 
                         </p:dataGrid>
+
                         <h:outputText value="Material:" />
-                        <p:dataGrid var="mat" value="#{articleCtrl.selectedarticle.articlematerials}">
+                        <p:dataGrid var="mat" value="#{selectionCtrl.selectedarticle.articlematerials}">
                             <h:outputText value=" - #{mat.material.material}"/>
                         </p:dataGrid>
+
                         <h:outputText value="Pflegehinweis:"/> 
-                        <p:graphicImage height="" width="" url="imageCare?articleno=#{articleCtrl.selectedarticle.articleno}"/>
+                        <p:graphicImage height="" width="" url="imageCare?articleno=#{selectionCtrl.selectedarticle.articleno}"/>
+
+
                         <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(articleCrtl.selectedarticle)}"/>
-                        
-                        
-                        <h:form>
-                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                <h:outputText value="FARBE:" />
-                                <p:selectOneButton value="#{articleCtrl.selectedarticle}">
-                                    <p:dataGrid value="#{articleCtrl.selectedarticle}"
-                                    <f:selectItem itemLabel="Xbox One" itemValue="#{}Xbox One" />
-                                    <f:selectItem itemLabel="PS4" itemValue="PS4" />
-                                    <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-                                </p:selectOneButton>
 
-                                <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
-                                <p:spacer />
 
-                                <h:outputText value="Selected:" />
-                                <h:outputText id="display" value="#{selectOneView.option}" style="font-weight: bold" />
-                            </h:panelGrid>
-                        </h:form>
-                    
-                        
-                        
+
+
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
+
         </h:form>
+
     </h:body>
 </html>
 
