@@ -75,11 +75,11 @@
 
                             </p:selectOneButton>
 
-                            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                            <p:commandButton value="Submit" update="selected" icon="ui-icon-check" />
                             <p:spacer />
 
                             <h:outputText value="Selected:" />
-                            <h:outputText id="display" value="#{selectionCtrl.selectedarticle.size.unit}" style="font-weight: bold" />
+                            <h:outputText id="selected" value="#{selectionCtrl.selectedarticle.size.unit}" style="font-weight: bold" />
                         </h:panelGrid>
                        
 
@@ -97,7 +97,7 @@
                         <p:graphicImage height="" width="" url="imageCare?articleno=#{selectionCtrl.selectedarticle.articleno}"/>
 
 
-                        <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(articleCrtl.selectedarticle)}"/>
+                        <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(selectionCtrl.selectedarticle)}"/>
 
 
 
