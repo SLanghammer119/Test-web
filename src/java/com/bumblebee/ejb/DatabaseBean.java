@@ -47,7 +47,7 @@ public class DatabaseBean implements Serializable{
     }    
     
     public List<Article> getOnePrimecategory(String primename){
-        Query q = emanag.createNamedQuery("Primecategoriy.findByPrimename", Primecategory.class);
+        Query q = emanag.createNamedQuery("Articles.findByPrimecategory", Article.class);
         q.setParameter("primename", primename);
         return q.getResultList();
     }
@@ -60,14 +60,10 @@ public class DatabaseBean implements Serializable{
     }
     
     public List<Article> getAllAccessoires(String primename){
-        Query q = emanag.createNamedQuery("Articles.findByPrimename", Article.class);
+        Query q = emanag.createNamedQuery("Articles.findByPrimecategory", Article.class);
         q.setParameter("primename", primename);
         return q.getResultList();
     }
-    
-    
-    
-    
     
     public Customer getCustomer(String email) {
         Query q = emanag.createNamedQuery("Customer.findByEmail", Customer.class);

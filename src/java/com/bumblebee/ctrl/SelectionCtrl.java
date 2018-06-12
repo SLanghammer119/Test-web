@@ -6,9 +6,16 @@
 package com.bumblebee.ctrl;
 
 import com.bumblebee.model.Article;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -19,9 +26,12 @@ import javax.inject.Named;
 @SessionScoped
 public class SelectionCtrl implements Serializable{
     
+    @Inject
+    ArticleCtrl articleCtrl;
+    
     private Article selectedarticle;
     
-    private String option ="";
+    private List<Article> selectedList;
 
     public SelectionCtrl() {
     }
@@ -29,6 +39,7 @@ public class SelectionCtrl implements Serializable{
     @PostConstruct
     public void init(){
         selectedarticle = new Article();
+        selectedList = new ArrayList<>();
   
     }
 
@@ -40,13 +51,25 @@ public class SelectionCtrl implements Serializable{
         this.selectedarticle = selectedarticle;
     }
 
-    public String getOption() {
-        return option;
+    public List<Article> getSelectedList() {
+        return selectedList;
     }
 
-    public void setOption(String option) {
-        this.option = option;
+    public void setSelectedList(List<Article> selectedList) {
+        this.selectedList = selectedList;
     }
+
+    public void fillselectedList (String cat){
+        selectedList = articleCtrl.getArticleMap().get(cat);
+//        System.out.println("SelectedList(" + cat + "): " + selectedList.size());
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("details.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(SelectionCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+  
     
     
     

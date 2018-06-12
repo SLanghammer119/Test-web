@@ -16,65 +16,66 @@
                 <h:outputText id="header" value="BUMBLEBE" />                 
                 <h:commandButton action="#{localeController.change('en')}"  image="#{resource['img:us.gif']}"/> 
                 <h:commandButton action="#{localeController.change('de')}"  image="#{resource['img:de.gif']}"/>
-       
+
 
 
                 <p:commandButton title="Zum Warenkorb" action="shoppingcart.xhtml" icon="fa fa-shopping-cart"/>
-                
+
                 <h:commandLink value="Mein Warenkorb"/>
-                
+
                 <p:commandButton value="LOGOUT" rendered="#{logCtrl.valid}" action="#{logCtrl.logout()}" icon="fa fa-female"/>
-                
+
                 <p:commandButton rendered="#{logCtrl.valid == false}" title="EINLOGGEN" action="registration.xhtml" icon="fa fa-female"/>
-                
-     </h:form>
 
-    </h:panelGroup>
+            </h:form>
+            <h:form>
+                <h:commandButton action="#{selectionCtrl.fillselectedList('Brillen')}" />   
+            </h:form>
 
-    <p:megaMenu style="margin-top:20px">
-        <p:submenu label="Produkte" icon="ui-icon-check">
-            <p:column>
-                <p:submenu label="Accessoires">
-
-                    <p:menuitem value="Brillen" url="articleoverview.xhtml" />
-
-                    <p:menuitem value="Parfum" url="#" />
-                    <p:menuitem value="Taschen" url="#" />
+        </h:panelGroup>
+        <h:form>
+            <p:megaMenu style="margin-top:20px">
+                <p:submenu label="Produkte" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="Accessoires" >
+                            <p:menuitem value="Brillen" actionListener="#{selectionCtrl.fillselectedList('Brillen')}"  />
+                            <p:menuitem value="Parfüm" actionListener="#{selectionCtrl.fillselectedList('Parfüm')}"  />
+                            <p:menuitem value="Taschen" actionListener="#{selectionCtrl.fillselectedList('Taschen')}" />
+                        </p:submenu>
+                        <p:submenu label="Kleider">
+                            <p:menuitem value="Business" actionListener="#{selectionCtrl.fillselectedList('Business')}" />
+                            <p:menuitem value="Casual" actionListener="#{selectionCtrl.fillselectedList('Casual')}"/>
+                            <p:menuitem value="Maxikleider" actionListener="#{selectionCtrl.fillselectedList('Maxikleider')}" />
+                            <p:menuitem value="Party" actionListener="#{selectionCtrl.fillselectedList('Party')}" />
+                        </p:submenu>
+                    </p:column>
+                    <p:column>
+                        <p:submenu label="Oberteile">
+                            <p:menuitem value="Blusen" actionListener="#{selectionCtrl.fillselectedList('Blusen')}" />
+                            <p:menuitem value="Pullover" actionListener="#{selectionCtrl.fillselectedList('Pullover')}"/>
+                            <p:menuitem value="Shirts" actionListener="#{selectionCtrl.fillselectedList('Shirts')}" />
+                            <p:menuitem value="Tunika" actionListener="#{selectionCtrl.fillselectedList('Tunika')}" />
+                        </p:submenu>
+                        <p:submenu label="Schuhe" >
+                            <p:menuitem value="Boots" actionListener="#{selectionCtrl.fillselectedList('Boots')}" />
+                            <p:menuitem value="Pumps" actionListener="#{selectionCtrl.fillselectedList('Pumps')}" />
+                            <p:menuitem value="High Heels" actionListener="#{selectionCtrl.fillselectedList('High Heels')}" />
+                            <p:menuitem value="Sneaker" actionListener="#{selectionCtrl.fillselectedList('Sneaker')}" />
+                        </p:submenu>
+                    </p:column>
+                    <p:column>
+                        <p:graphicImage url="image?articleno=2587587558" width="150"/>
+                        <p:graphicImage url="image?articleno=2487587579" width="150"/>
+                        <p:graphicImage url="image?articleno=3587598566" width="150"/>
+                        <p:graphicImage url="image?articleno=2587587558" width="150"/>
+                    </p:column>
                 </p:submenu>
-                <p:submenu label="Kleider">
-                    <p:menuitem value="Business" url="#" />
-                    <p:menuitem value="Casual" url="#" />
-                    <p:menuitem value="Maxikleider" url="#" />
-                    <p:menuitem value="Party" url="#" />
-                </p:submenu>
-            </p:column>
-            <p:column>
-                <p:submenu label="Oberteile">
-                    <p:menuitem value="Blusen" url="#" />
-                    <p:menuitem value="Pullover" url="#" />
-                    <p:menuitem value="Shirts" url="#" />
-                    <p:menuitem value="Tunika" url="#" />
-                </p:submenu>
-                <p:submenu label="Schuhe" >
-                    <p:menuitem value="Boots" url="#" />
-                    <p:menuitem value="Pumps" url="#" />
-                    <p:menuitem value="High Heels" url="#" />
-                    <p:menuitem value="Sneaker" url="#" />
-                </p:submenu>
-            </p:column>
-            <p:column>
-                <p:graphicImage url="image?articleno=2587587558" width="150"/>
-                <p:graphicImage url="image?articleno=2487587579" width="150"/>
-                <p:graphicImage url="image?articleno=3587598566" width="150"/>
-                <p:graphicImage url="image?articleno=2587587558" width="150"/>
-            </p:column>
-        </p:submenu>
-        <p:menuitem value="Accessoires" url="#" />
-        <p:menuitem value="Kleider" url="#" />
-        <p:menuitem value="Oberteile" url="#" />
-        <p:menuitem value="Schuhe" url="#" />
-    </p:megaMenu>
-
-</h:body>
+                <p:menuitem value="Accessoires" actionListener="#{selectionCtrl.fillselectedList('Accessoires')}" />
+                <p:menuitem value="Kleider" actionListener="#{selectionCtrl.fillselectedList('Kleider')}" />
+                <p:menuitem value="Oberteile" actionListener="#{selectionCtrl.fillselectedList('Oberteile')}" />
+                <p:menuitem value="Schuhe" actionListener="#{selectionCtrl.fillselectedList('Schuhe')}" />
+            </p:megaMenu>
+        </h:form>
+    </h:body>
 </html>
 

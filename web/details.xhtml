@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <h:form id="form">
-            <p:dataGrid var="art" value="#{articleCtrl.articles}" columns="3"
+            <p:dataGrid var="sel" value="#{selectionCtrl.selectedList}" columns="3"
                         rows="12" paginator="true" id="articles"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16">
@@ -21,15 +21,15 @@
 
                 <p:panel style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <p:commandLink update=":form:articleDetail" oncomplete="PF('articleDialog').show()" title="#{art.name}">
-                            <p:graphicImage height="300" width="300" url="image?articleno=#{art.articleno}"/>
-                            <f:setPropertyActionListener value="#{art}" target="#{selectionCtrl.selectedarticle}" />
+                        <p:commandLink update=":form:articleDetail" oncomplete="PF('articleDialog').show()" title="#{sel.name}">
+                            <p:graphicImage height="300" width="300" url="image?articleno=#{sel.articleno}"/>
+                            <f:setPropertyActionListener value="#{sel}" target="#{selectionCtrl.selectedarticle}" />
                         </p:commandLink> 
-                        <h:outputText value="#{art.name}" />
-                        <h:outputText value="#{art.price}">
+                        <h:outputText value="#{sel.name}" />
+                        <h:outputText value="#{sel.price}">
                             <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
                         </h:outputText>
-                        <p:dataGrid columns="1" value="#{art.articlecolors}" var="colors">
+                        <p:dataGrid columns="1" value="#{sel.articlecolors}" var="colors">
                             <h:outputText value="#{colors.color.color}" />
                         </p:dataGrid>
 

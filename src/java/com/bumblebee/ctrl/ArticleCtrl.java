@@ -10,7 +10,9 @@ import com.bumblebee.model.Article;
 import com.bumblebee.model.Articlesize;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -29,91 +31,50 @@ public class ArticleCtrl implements Serializable {
 
     private List<Article> articles;
     private List<Article> accessoires;
-    private List<Article> dresses;
-    private List<Article> tops;
-    private List<Article> shoes;
 
-    private List<Article> sunglasses;
-    private List<Article> parfume;
-    private List<Article> bags;
+    private Map<String, List<Article>> articleMap;
 
-    private List<Article> business;
-    private List<Article> casual;
-    private List<Article> maxi;
-    private List<Article> party;
-
-    private List<Article> blouses;
-    private List<Article> pullover;
-    private List<Article> shirts;
-    private List<Article> tunics;
-
-    private List<Article> boots;
-    private List<Article> pumps;
-    private List<Article> highheels;
-    private List<Article> sneaker;
-    
-    private List<Article> selectedList;
-
-    
     public ArticleCtrl() {
+        articleMap = new HashMap<>();
+
         this.articles = new ArrayList<>();
         this.accessoires = new ArrayList<>();
-        this.dresses = new ArrayList<>();
-        this.tops = new ArrayList<>();
-        this.shoes = new ArrayList<>();
-
-        this.sunglasses = new ArrayList<>();
-        this.parfume = new ArrayList<>();
-        this.bags = new ArrayList<>();
-
-        this.business = new ArrayList<>();
-        this.casual = new ArrayList<>();
-        this.maxi = new ArrayList<>();
-        this.party = new ArrayList<>();
-
-        this.blouses = new ArrayList<>();
-        this.pullover = new ArrayList<>();
-        this.shirts = new ArrayList<>();
-        this.tunics = new ArrayList<>();
-
-        this.blouses = new ArrayList<>();
-        this.pullover = new ArrayList<>();
-        this.shirts = new ArrayList<>();
-        this.tunics = new ArrayList<>();
-
-        this.boots = new ArrayList<>();
-        this.pumps = new ArrayList<>();
-        this.highheels = new ArrayList<>();
-        this.sneaker = new ArrayList<>();
     }
 
-    
     @PostConstruct
     public void fillArticles() {
         this.articles = databaseBean.getAllArticles();
-        this.accessoires = databaseBean.getOnePrimecategory("Accessoires");
-        this.dresses = databaseBean.getOnePrimecategory("Kleider");
-        this.tops = databaseBean.getOnePrimecategory("Oberteile");
-        this.shoes = databaseBean.getOnePrimecategory("Schuhe");
+        
+//        this.accessoires = databaseBean.getOnePrimecategory("Accessoires");
 
-        this.sunglasses = databaseBean.getOneSubcategory("Brillen");
-        this.parfume = databaseBean.getOneSubcategory("Parfume");
-        this.bags = databaseBean.getOneSubcategory("Taschen");
+        articleMap.put("Accessoires", databaseBean.getOnePrimecategory("Accessoires"));
+        articleMap.put("Kleider", databaseBean.getOnePrimecategory("Kleider"));
+        articleMap.put("Oberteile", databaseBean.getOnePrimecategory("Oberteile"));
+        articleMap.put("Schuhe", databaseBean.getOnePrimecategory("Schuhe"));
 
-        this.business = databaseBean.getOneSubcategory("Business");
-        this.casual = databaseBean.getOneSubcategory("Casual");
-        this.maxi = databaseBean.getOneSubcategory("Maxikleider");
-        this.party = databaseBean.getOneSubcategory("Party");
+        articleMap.put("Brillen", databaseBean.getOneSubcategory("Brillen"));
+        articleMap.put("Parfüm", databaseBean.getOneSubcategory("Parfüm"));
+        articleMap.put("Taschen", databaseBean.getOneSubcategory("Taschen"));
+        articleMap.put("Business", databaseBean.getOneSubcategory("Business"));
+        articleMap.put("Casual", databaseBean.getOneSubcategory("Casual"));
+        articleMap.put("Maxikleider", databaseBean.getOneSubcategory("Maxikleider"));
+        articleMap.put("Party", databaseBean.getOneSubcategory("Party"));
+        articleMap.put("Blusen", databaseBean.getOneSubcategory("Blusen"));
+        articleMap.put("Pullover", databaseBean.getOneSubcategory("Pullover"));
+        articleMap.put("Shirts", databaseBean.getOneSubcategory("Shirts"));
+        articleMap.put("Tunika", databaseBean.getOneSubcategory("Tunika"));
+        articleMap.put("Boots", databaseBean.getOneSubcategory("Boots"));
+        articleMap.put("High Heels", databaseBean.getOneSubcategory("High Heels"));
+        articleMap.put("Pumps", databaseBean.getOneSubcategory("Pumps"));
+        articleMap.put("Sneaker", databaseBean.getOneSubcategory("Sneaker"));
 
-        this.business = databaseBean.getOneSubcategory("Blusen");
-        this.casual = databaseBean.getOneSubcategory("Pullover");
-        this.maxi = databaseBean.getOneSubcategory("Shirts");
-        this.party = databaseBean.getOneSubcategory("Tunika");
+        accessoires = articleMap.get("Accessoires");
 
-        this.boots = databaseBean.getOneSubcategory("Boots");
-        this.pumps = databaseBean.getOneSubcategory("Pumps");
-        this.highheels = databaseBean.getOneSubcategory("High Heels");
-        this.sneaker = databaseBean.getOneSubcategory("Sneaker");
+        
+    }
+
+    public Map<String, List<Article>> getArticleMap() {
+        return articleMap;
     }
 
     public List<Article> getArticles() {
@@ -140,156 +101,10 @@ public class ArticleCtrl implements Serializable {
         this.accessoires = accessoires;
     }
 
-    public List<Article> getDresses() {
-        return dresses;
+    public void setArticleMap(Map<String, List<Article>> articleMap) {
+        this.articleMap = articleMap;
     }
 
-    public void setDresses(List<Article> dresses) {
-        this.dresses = dresses;
-    }
+   
 
-    public List<Article> getTops() {
-        return tops;
-    }
-
-    public void setTops(List<Article> tops) {
-        this.tops = tops;
-    }
-
-    public List<Article> getShoes() {
-        return shoes;
-    }
-
-    public void setShoes(List<Article> shoes) {
-        this.shoes = shoes;
-    }
-
-    public List<Article> getSunglasses() {
-        return sunglasses;
-    }
-
-    public void setSunglasses(List<Article> sunglasses) {
-        this.sunglasses = sunglasses;
-    }
-
-    public List<Article> getParfume() {
-        return parfume;
-    }
-
-    public void setParfume(List<Article> parfume) {
-        this.parfume = parfume;
-    }
-
-    public List<Article> getBags() {
-        return bags;
-    }
-
-    public void setBags(List<Article> bags) {
-        this.bags = bags;
-    }
-
-    public List<Article> getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(List<Article> business) {
-        this.business = business;
-    }
-
-    public List<Article> getCasual() {
-        return casual;
-    }
-
-    public void setCasual(List<Article> casual) {
-        this.casual = casual;
-    }
-
-    public List<Article> getMaxi() {
-        return maxi;
-    }
-
-    public void setMaxi(List<Article> maxi) {
-        this.maxi = maxi;
-    }
-
-    public List<Article> getParty() {
-        return party;
-    }
-
-    public void setParty(List<Article> party) {
-        this.party = party;
-    }
-
-    public List<Article> getBlouses() {
-        return blouses;
-    }
-
-    public void setBlouses(List<Article> blouses) {
-        this.blouses = blouses;
-    }
-
-    public List<Article> getPullover() {
-        return pullover;
-    }
-
-    public void setPullover(List<Article> pullover) {
-        this.pullover = pullover;
-    }
-
-    public List<Article> getShirts() {
-        return shirts;
-    }
-
-    public void setShirts(List<Article> shirts) {
-        this.shirts = shirts;
-    }
-
-    public List<Article> getTunics() {
-        return tunics;
-    }
-
-    public void setTunics(List<Article> tunics) {
-        this.tunics = tunics;
-    }
-
-    public List<Article> getBoots() {
-        return boots;
-    }
-
-    public void setBoots(List<Article> boots) {
-        this.boots = boots;
-    }
-
-    public List<Article> getPumps() {
-        return pumps;
-    }
-
-    public void setPumps(List<Article> pumps) {
-        this.pumps = pumps;
-    }
-
-    public List<Article> getHighheels() {
-        return highheels;
-    }
-
-    public void setHighheels(List<Article> highheels) {
-        this.highheels = highheels;
-    }
-
-    public List<Article> getSneaker() {
-        return sneaker;
-    }
-
-    public void setSneaker(List<Article> sneaker) {
-        this.sneaker = sneaker;
-    }
-
-    public List<Article> getSelectedList() {
-        return selectedList;
-    }
-
-    public void setSelectedList(List<Article> selectedList) {
-        this.selectedList = selectedList;
-    }
-    
 }
