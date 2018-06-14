@@ -46,7 +46,8 @@ public class ImageServletPhoto extends HttpServlet {
 			response.reset();
 			response.getOutputStream().write(photo);
 		} catch(Exception ex) {
-			throw new ServletException(ex.getMessage());
+                    ex.printStackTrace();
+			//throw new ServletException(ex.getMessage());
 		}
 	}
 }

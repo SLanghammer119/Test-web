@@ -1,67 +1,59 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <h:form id="language">
+            <h:commandButton action="#{localeCtrl.changeLanguage('es')}" value="Español" />
+            <h:commandButton action="#{localeCtrl.changeLanguage('de')}" value="Deutsch" />
+            <h:commandButton action="#{localeCtrl.changeLanguage('en')}" value="English" />
 
-    <h:head>
-        <title>Registration</title>
-        <h:outputStylesheet library="css" name="bumblebee.css" />
-    </h:head>
-    <h:body id="wrapper_registration">
+        </h:form>
+        <h:messages class="error" />
+        <h:outputText id="subheading" value="Bitte geben Sie Ihre Kontaktdaten ein:"/>
+        <h:form id="inPerson">
+
+            <h:outputLabel for="inFirst" value="#{msg.firstname}" />
+            <h:inputText id ="inFirst" value="#{logCtrl.customer.firstname}"/>
+            <h:message for="inFirst" class="error"/> 
+            <h:outputLabel for="inLast" value="#{msg.lastname}" />
+            <h:inputText id="inLast" value="#{logCtrl.customer.lastname}"/>
+            <h:message for="inLast" class="error"/> 
+
+            <h:outputLabel for="inStreet" value="#{msg.street}" />
+            <h:inputText id ="inStreet" value="#{logCtrl.customer.street}"/>
+            <h:message for="inStreet" class="error"/> 
+            <h:outputLabel for="inHouse" value="#{msg.houseNo}" />
+            <h:inputText id="inHouse" value="#{logCtrl.customer.houseno}"/>
+            <h:message for="inHouse" class="error"/> 
+
+            <h:outputLabel for="inPost" value="#{msg.postcode}" />
+            <h:inputText id ="inPost" value="#{logCtrl.customer.postcode}" validator="postcodeValidator"/>
+            <h:message for="inPost" class="error"/> 
+            <h:outputLabel for="inTown" value="#{msg.town}" />
+            <h:inputText id="inTown" value="#{logCtrl.customer.town}"/>
+            <h:message for="inTown" class="error"/> 
+
+            <h:outputLabel for="inTele" value="#{msg.phone}" />
+            <h:inputText id="inTele" value="#{logCtrl.customer.phone}"/>
+            <h:message for="inTele" class="error"/> 
+            <h:outputLabel for="inEmail" value="#{msg.email}" />
+            <h:inputText id="inEmail" value="#{logCtrl.customer.email}" validator="emailValidator"/>
+            <h:message for="inEmail" class="error"/> 
+
+            <h:outputLabel for="inPassword" value="#{msg.password}" />
+            <p:password id="inPassword" value="#{logCtrl.customer.password}" feedback="true"
+                        promptLabel="#{msg.promptLabel}" weakLabel="#{msg.weakLabel}"
+                        goodLabel="#{msg.goodLabel}" strongLabel="#{msg.strongLabel}" validator="passwordValidator"/>
+            <h:message for="inPassword" class="error"/> 
+
+            <h:commandButton action="#{logCtrl.finishRegister()}" value="#{msg.btnsend}" />
+        </h:form> 
+    </ui:define>
+</ui:composition>
 
 
-        <f:view locale="#{localeCtrl.locale}">
-            <h:form id="language">
-                <h:commandButton action="#{localeCtrl.changeLanguage('es')}" value="Español" />
-                <h:commandButton action="#{localeCtrl.changeLanguage('de')}" value="Deutsch" />
-                <h:commandButton action="#{localeCtrl.changeLanguage('en')}" value="English" />
 
-            </h:form>
-            <h:messages class="error" />
-            <h:outputText id="subheading" value="Bitte geben Sie Ihre Kontaktdaten ein:"/>
-            <h:form id="inPerson">
-
-                <h:outputLabel for="inFirst" value="#{msg.firstname}" />
-                <h:inputText id ="inFirst" value="#{logCtrl.customer.firstname}"/>
-                <h:message for="inFirst" class="error"/> 
-                <h:outputLabel for="inLast" value="#{msg.lastname}" />
-                <h:inputText id="inLast" value="#{logCtrl.customer.lastname}"/>
-                <h:message for="inLast" class="error"/> 
-
-                <h:outputLabel for="inStreet" value="#{msg.street}" />
-                <h:inputText id ="inStreet" value="#{logCtrl.customer.street}"/>
-                <h:message for="inStreet" class="error"/> 
-                <h:outputLabel for="inHouse" value="#{msg.houseNo}" />
-                <h:inputText id="inHouse" value="#{logCtrl.customer.houseno}"/>
-                <h:message for="inHouse" class="error"/> 
-
-                <h:outputLabel for="inPost" value="#{msg.postcode}" />
-                <h:inputText id ="inPost" value="#{logCtrl.customer.postcode}" validator="postcodeValidator"/>
-                <h:message for="inPost" class="error"/> 
-                <h:outputLabel for="inTown" value="#{msg.town}" />
-                <h:inputText id="inTown" value="#{logCtrl.customer.town}"/>
-                <h:message for="inTown" class="error"/> 
-
-                <h:outputLabel for="inTele" value="#{msg.phone}" />
-                <h:inputText id="inTele" value="#{logCtrl.customer.phone}"/>
-                <h:message for="inTele" class="error"/> 
-                <h:outputLabel for="inEmail" value="#{msg.email}" />
-                <h:inputText id="inEmail" value="#{logCtrl.customer.email}" validator="emailValidator"/>
-                <h:message for="inEmail" class="error"/> 
-
-                <h:outputLabel for="inPassword" value="#{msg.password}" />
-                <p:password id="inPassword" value="#{logCtrl.customer.password}" feedback="true"
-                            promptLabel="#{msg.promptLabel}" weakLabel="#{msg.weakLabel}"
-                            goodLabel="#{msg.goodLabel}" strongLabel="#{msg.strongLabel}" validator="passwordValidator"/>
-                <h:message for="inPassword" class="error"/> 
-
-                <h:commandButton action="#{logCtrl.finishRegister()}" value="#{msg.btnsend}" />
-
-            </h:form> 
-        </f:view>
-
-    </h:body>
-</html>
 

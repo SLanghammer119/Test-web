@@ -34,7 +34,45 @@ time, mark, audio, video {
 
 /*neue Formatierung*/
 
-/*index*/
+/*menu*/
+
+#banner{
+    background-color:rosybrown;
+    height: 270px;
+    position:relative;
+}
+
+#headline{
+    font-size:55pt;
+    position: absolute;
+    top:50%;
+    left:40%;
+    color:white;
+    font-family: cursive;
+}
+
+#headright{
+    text-align: right;
+}
+
+#headleft{
+    text-align: left;
+}
+
+#logo{
+    position:absolute;
+    left:20%;
+    top:-2%;
+    
+}
+
+
+
+
+
+
+
+
 
 #wrapper_index{
     background-image:url("#{resource['img/restaurant.jpg']}");
@@ -152,7 +190,7 @@ input[type=submit]{
 
 
 #inPerson{
-    background-color: green;
+    background-color: rosybrown;
     color:white;
     position:absolute;
     top:70px;
@@ -176,7 +214,7 @@ input[type=submit]{
 
 #inPerson input[type=submit]{
     width: 60%;
-    background-color: #4CAF50;
+    background-color: rosybrown;
     color: white;
     font-weight: bolder;
     font-size:11pt;
@@ -204,7 +242,7 @@ input[type=submit]{
 #subheading{
     font-size:18pt;
     font-weight: bolder;
-    color:green;
+    color:rosybrown;
     margin-left:100px;
     margin-top:20px;
     display:block;
@@ -280,6 +318,12 @@ input[type=submit]{
 
 .summary_subheading{
     font-size:25pt;
+}
+
+#foot{background-color:rosybrown;
+    height: 200px;
+ 
+    
 }
 
 

@@ -1,58 +1,46 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Warenkorb</title>
-    </h:head>
-    <h:body>
-        <f:view locale="#{localeCtrl.locale}">
-                <h:form id="shoplist" rendered="#{shoppingCartCtrl.shoppingcart.shoppingitems.size()>0}">
-                <p:panel style="text-align:center">
-
-                    <p:dataTable var="cart" value="#{shoppingCartCtrl.shoppingcart.shoppingitems}">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Artikel"/> 
-                            </f:facet>
-                            <h:outputText value="#{cart.article.name}" />
-                            <h:outputText value="#{cart.article.articleno}"/>
-                            <h:outputText value="#{cart.article.color.color}"/>
-                            <h:outputText value="#{cart.article.size.unit}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Anzahl"/> 
-                            </f:facet>
-                            <p:spinner id="basic" value="#{cart.number}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Preis"/> 
-                            </f:facet>
-                            <h:outputText value="#{cart.article.price}">
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        <h:form id="shoplist" rendered="#{shoppingCartCtrl.shoppingcart.shoppingitems.size()>0}">
+            <p:panel style="text-align:center">
+                <p:dataTable var="cart" value="#{shoppingCartCtrl.shoppingcart.shoppingitems}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Artikel"/> 
+                        </f:facet>
+                        <h:outputText value="#{cart.article.name}" />
+                        <h:outputText value="#{cart.article.articleno}"/>
+                        <h:outputText value="#{cart.article.color.color}"/>
+                        <h:outputText value="#{cart.article.size.unit}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Anzahl"/> 
+                        </f:facet>
+                        <p:spinner id="basic" value="#{cart.number}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Preis"/> 
+                        </f:facet>
+                        <h:outputText value="#{cart.article.price}">
                             <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
-                            </h:outputText>
-              
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Gesamtsumme"/> 
-                            </f:facet>
-                            <h:outputText value="#{cart.totalLine}"/>
-                        </h:column>
-                        
-                       
-                    
-                       
-
-                    </p:dataTable>
-                </p:panel>
-
-            </h:form>
-        </f:view>
-    </h:body>
-</html>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Gesamtsumme"/> 
+                        </f:facet>
+                        <h:outputText value="#{cart.totalLine}"/>
+                    </h:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
 

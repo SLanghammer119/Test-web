@@ -1,23 +1,20 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Login</title>
-        <h:outputStylesheet library="css" name="bumblebee.css" />
-    </h:head>
-    <h:body id="wrapper_login">
-        <h:form id="log">
-            <h:panelGroup layout="block">
-                <h:outputLabel for="inUser" value="Benutzername:" />
-                <h:inputText id ="inUser" value="#{logCtrl.customer.email}" /> <br/>
-                <h:outputLabel for="inPass" value=" Passwort:" />
-                <h:inputText id="inPass" value="#{logCtrl.customer.password}"/> <br/>
-                <h:commandButton value="Login" action="#{logCtrl.login()}"/> <br/>
-                <h:outputText value=" Noch nicht registriert?"/>
-                <h:commandLink value=" Jetzt registrieren!" action="registration"/>
-            </h:panelGroup>
-        </h:form>
-    </h:body>
-</html>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+            <h:form id="log">
+                <h:panelGroup layout="block">
+                    <h:outputLabel for="inUser" value="Benutzername:" />
+                    <h:inputText id ="inUser" value="#{logCtrl.customer.email}" /> <br/>
+                    <h:outputLabel for="inPass" value=" Passwort:" />
+                    <h:inputText id="inPass" value="#{logCtrl.customer.password}"/> <br/>
+                    <h:commandButton value="Login" action="#{logCtrl.login()}"/> <br/>
+                    <h:outputText value=" Noch nicht registriert?"/>
+                    <h:commandLink value=" Jetzt registrieren!" action="registration"/>
+                </h:panelGroup>
+            </h:form>
+    </ui:define>
+</ui:composition>
+
 

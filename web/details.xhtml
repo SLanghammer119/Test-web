@@ -1,14 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Produktdetails</title>
 
-    </h:head>
-    <h:body>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+                >
+    <ui:define name="content">
         <h:form id="form">
             <p:dataGrid var="sel" value="#{selectionCtrl.selectedList}" columns="3"
                         rows="12" paginator="true" id="articles"
@@ -22,7 +21,7 @@
                 <p:panel style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <p:commandLink update=":form:articleDetail" oncomplete="PF('articleDialog').show()" title="#{sel.name}">
-                            <p:graphicImage height="300" width="300" url="image?articleno=#{sel.articleno}"/>
+                            <p:graphicImage height="400" width="320" url="image?articleno=#{sel.articleno}"/>
                             <f:setPropertyActionListener value="#{sel}" target="#{selectionCtrl.selectedarticle}" />
                         </p:commandLink> 
                         <h:outputText value="#{sel.name}" />
@@ -39,9 +38,9 @@
 
             <p:dialog width="800" height="900" header="#{selectionCtrl.selectedarticle.name}" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="articleDetail" style="text-align:center;">
-                    <p:panelGrid  columns="1" rendered="#{not empty selectionCtrl.selectedarticle}" columnClasses="label,value">
-                        <f:facet name="header" >
-                            <p:graphicImage height="300" width="300" url="image?articleno=#{selectionCtrl.selectedarticle.articleno}"/>
+                    <p:panelGrid  id="ta" columns="1" rendered="#{not empty selectionCtrl.selectedarticle}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage height="400" width="300" url="image?articleno=#{selectionCtrl.selectedarticle.articleno}" />
                         </f:facet>
 
 
@@ -52,7 +51,7 @@
                             <f:convertNumber maxFractionDigits="2" groupingUsed="true" locale="de-DE" currencySymbol="€" type="currency"/>
                         </h:outputText>
 
-                        <h:outputText value="FARBE:" />
+                        <h:outputText value="VERFÜGBARE FARBEN:" />
                         <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                             <p:selectOneButton value="#{selectionCtrl.selectedarticle.color.color}">
 
@@ -60,14 +59,13 @@
 
                             </p:selectOneButton>
 
-                            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+       
                             <p:spacer />
 
-                            <h:outputText value="Selected:" />
-                            <h:outputText id="display" value="#{selectionCtrl.selectedarticle.color.color}" style="font-weight: bold" />
+                 
                         </h:panelGrid>
 
-                        <h:outputText value="GRÖSSE" />
+                        <h:outputText value="VERFÜGBARE GRÖSSEN:" />
                         <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                             <p:selectOneButton value="#{selectionCtrl.selectedarticle.size.unit}">
 
@@ -75,13 +73,12 @@
 
                             </p:selectOneButton>
 
-                            <p:commandButton value="Submit" update="selected" icon="ui-icon-check" />
+                            
                             <p:spacer />
 
-                            <h:outputText value="Selected:" />
-                            <h:outputText id="selected" value="#{selectionCtrl.selectedarticle.size.unit}" style="font-weight: bold" />
+                            
                         </h:panelGrid>
-                       
+
 
                         <h:outputText value="Artikelbeschreibung:" />
                         <p:dataGrid var="des" value="#{selectionCtrl.selectedarticle.articledescriptions}">
@@ -90,24 +87,15 @@
 
                         <h:outputText value="Material:" />
                         <p:dataGrid var="mat" value="#{selectionCtrl.selectedarticle.articlematerials}">
-                            <h:outputText value=" - #{mat.material.material}"/>
+                            <br/> <h:outputText value=" - #{mat.material.material}" /> 
                         </p:dataGrid>
 
                         <h:outputText value="Pflegehinweis:"/> 
                         <p:graphicImage height="" width="" url="imageCare?articleno=#{selectionCtrl.selectedarticle.articleno}"/>
-
-
                         <h:commandButton value="IN DEN WARENKORB" action="#{shoppingCartCtrl.addArticle(selectionCtrl.selectedarticle)}"/>
-
-
-
-
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
-
         </h:form>
-
-    </h:body>
-</html>
-
+    </ui:define>
+</ui:composition>
