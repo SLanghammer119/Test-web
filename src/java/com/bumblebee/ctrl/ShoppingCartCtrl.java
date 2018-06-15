@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -28,6 +29,7 @@ public class ShoppingCartCtrl implements Serializable{
 //    private LookUpMDBean lookUpMDBean;
     private String errorMessage;
     private Collection<HttpSession> mySessions;
+    private Integer changedNumber;
 
     @Inject
     ArticleCtrl articles;
@@ -80,8 +82,15 @@ public class ShoppingCartCtrl implements Serializable{
             }
         }
     }
-    
+    public void changeNumber(ValueChangeEvent event){
+    changedNumber =(Integer)event.getNewValue();
+    }
 
+    public void refreshCardObject(Shoppingitem item){
+        item.setNumber(item.getNumber()+1);
+        changedNumber=null;
+    }
+    
     public void addArticle(Article a) {
         boolean found = false;
         Shoppingitem shopitem = new Shoppingitem(a);
@@ -102,6 +111,7 @@ public class ShoppingCartCtrl implements Serializable{
             shoppingcart.getShoppingitems().add(shopitem);
         }
     }
+    
     
     
     

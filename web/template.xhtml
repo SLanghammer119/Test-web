@@ -12,10 +12,16 @@
 		<h:outputText value="#{msg['title']}"/>
 	</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="bumblebee.css"/>
+	
         
 </h:head>
 <h:body>
+    <f:facet name="last">
+     <h:outputStylesheet library="css" name="bumblebee.css"/>
+      <h:outputStylesheet library="css" name="prime.css"/>
+     
+  </f:facet>
+  
 	<h:messages globalOnly="true"/>
 
 	<ui:insert name="header">

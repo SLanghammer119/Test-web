@@ -32,9 +32,13 @@ public class SelectionCtrl implements Serializable{
     private Article selectedarticle;
     
     private List<Article> selectedList;
+    
+    private String paying;
 
     public SelectionCtrl() {
     }
+    
+    
     
     @PostConstruct
     public void init(){
@@ -68,6 +72,24 @@ public class SelectionCtrl implements Serializable{
             Logger.getLogger(SelectionCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public String getPaying() {
+        return paying;
+    }
+
+    public void setPaying(String paying) {
+        this.paying = paying;
+    }
+
+    public ArticleCtrl getArticleCtrl() {
+        return articleCtrl;
+    }
+
+    public void setArticleCtrl(ArticleCtrl articleCtrl) {
+        this.articleCtrl = articleCtrl;
+    }
+    
+    
     
   
     

@@ -66,6 +66,14 @@ time, mark, audio, video {
     
 }
 
+table{
+    background-color:rgba(188,143,143,0.2);
+}
+
+.ui-carusel{
+    background-color:black;
+    
+}
 
 
 
@@ -74,7 +82,11 @@ time, mark, audio, video {
 
 
 
-#wrapper_index{
+
+
+
+
+/*#wrapper_index{
     background-image:url("#{resource['img/restaurant.jpg']}");
     background-repeat:no-repeat;
     background-attachment: fixed;
@@ -134,7 +146,7 @@ a{
 }
 
 
-/*login*/
+login
 #wrapper_login{
     background-image:url("#{resource['img/login.jpg']}");
     background-repeat:no-repeat;
@@ -181,7 +193,7 @@ input[type=submit]{
 }
 
 
-/*registration*/
+registration
 #wrapper_registration{
     background-image:url("#{resource['img/registration.jpg']}");
     background-repeat:no-repeat;
@@ -259,7 +271,7 @@ input[type=submit]{
 }
 
 
-/*summary*/
+summary
 
 #wrapper_summary{
     background-image:url("#{resource['img/summary.jpg']}");
@@ -318,13 +330,13 @@ input[type=submit]{
 
 .summary_subheading{
     font-size:25pt;
+}*/
+
+#foot{
+    background-color:rosybrown; 
 }
 
-#foot{background-color:rosybrown;
-    height: 200px;
- 
-    
-}
+
 
 
 

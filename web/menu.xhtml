@@ -18,7 +18,7 @@
         <h:form id="headright">
             <p:commandButton title="Zum Warenkorb" action="shoppingcart.xhtml" icon="fa fa-shopping-cart"/>
             <p:commandButton value="LOGOUT" rendered="#{logCtrl.valid}" action="#{logCtrl.logout()}" icon="fa fa-female"/>
-            <p:commandButton rendered="#{logCtrl.valid == false}" title="EINLOGGEN" action="registration.xhtml" icon="fa fa-female"/> 
+            <p:commandButton rendered="#{logCtrl.valid == false}" title="EINLOGGEN" action="login.xhtml" icon="fa fa-female"/> 
             
         </h:form>
         <h:panelGroup layout="block" id="headline">

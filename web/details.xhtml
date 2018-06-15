@@ -36,7 +36,7 @@
                 </p:panel>
             </p:dataGrid>
 
-            <p:dialog width="800" height="900" header="#{selectionCtrl.selectedarticle.name}" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:dialog width="800" height="900" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="articleDetail" style="text-align:center;">
                     <p:panelGrid  id="ta" columns="1" rendered="#{not empty selectionCtrl.selectedarticle}" columnClasses="label,value">
                         <f:facet name="header">
@@ -87,7 +87,9 @@
 
                         <h:outputText value="Material:" />
                         <p:dataGrid var="mat" value="#{selectionCtrl.selectedarticle.articlematerials}">
-                            <br/> <h:outputText value=" - #{mat.material.material}" /> 
+                            <h:outputText value=" - #{mat.material.material}" > 
+                           
+                            </h:outputText>
                         </p:dataGrid>
 
                         <h:outputText value="Pflegehinweis:"/> 

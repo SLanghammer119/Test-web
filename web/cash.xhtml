@@ -1,0 +1,74 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <h:messages class="error" />
+        <h:outputText id="subheading" value="Bitte wählen Sie eine Bezahlweise aus:"/>
+
+        <h:form id="selectCash" >
+            <p:selectOneRadio value="#{selectionCtrl.paying}" id="paying" columns="2" >
+                <f:selectItem  itemLabel="Lastschrift" itemValue="Lastschrift"/>
+                <f:selectItem  itemLabel="Kreditkarte" itemValue="Kreditkarte"/>
+                <p:ajax event="change" update="groupe" />
+            </p:selectOneRadio>  
+        </h:form>
+        
+        
+        <h:panelGroup id="groupe">
+            <h:form id="frmLastschrift" rendered="#{selectionCtrl.paying=='Lastschrift'}">
+                <p:dataGrid columns="1" value="#{shoppingCartCtrl.shoppingcart.customer.bankaccount}" var="b">
+                    <h:outputLabel for="inFirst" value="#{msg.firstname}" />
+                    <h:inputText id ="inFirst" value="#{b.firstname}"/>
+                    <h:message for="inFirst" class="error"/> <br/>
+                    <h:outputLabel for="inLast" value="#{msg.lastname}" />
+                    <h:inputText id="inLast" value="#{b.lastname}"/>
+                    <h:message for="inLast" class="error"/>  <br/>       
+                    <h:outputLabel for="inIban" value="#{msg.iban}" />
+                    <h:inputText id="inIban" value="#{b.iban}"/>
+                    <h:message for="inIban" class="error"/>   <br/>
+                    <h:outputLabel for="inBic" value="#{msg.bic}" />
+                    <h:inputText id="inBic" value="#{b.bic}"/>
+                    <h:message for="inBic" class="error"/>  <br/>
+                    <h:outputLabel for="inBank" value="#{msg.bankname}" />
+                    <h:inputText id="inBank" value="#{b.bankname}"/>
+                    <h:message for="inBank" class="error"/>     
+                </p:dataGrid>
+            </h:form>
+
+            <h:form id="frmCreditcard" rendered="#{selectionCtrl.paying=='Kreditkarte'}">
+                <p:dataGrid columns="2" value="#{shoppingCartCtrl.shoppingcart.customer.creditcard}" var="c">
+                    <h:outputLabel for="inFirst" value="#{msg.firstname}" />
+                    <h:inputText id ="inFirst" value="#{c.firstname}"/>
+                    <h:message for="inFirst" class="error"/> 
+                    <h:outputLabel for="inLast" value="#{msg.lastname}" />
+                    <h:inputText id="inLast" value="#{c.lastname}"/>
+                    <h:message for="inLast" class="error"/>  
+                    <h:outputLabel for="inType" value="#{msg.type}" />
+                    <h:inputText id ="inType" value="#{c.type}"/>
+                    <h:message for="inType" class="error"/>   
+                    <h:outputLabel for="inCardNo" value="#{msg.cardNo}" />
+                    <h:inputText id="inCardNo" value="#{c.cardno}"/>
+                    <h:message for="inCardNo" class="error"/>  
+                    <h:outputLabel for="inValid" value="#{msg.validity}" />
+                    <h:inputText id="inValid" value="#{c.validity}"/>
+                    <h:message for="inValid" class="error"/> 
+                    <h:outputLabel for="controllNo" value="#{msg.controllNo}" />
+                    <h:inputText id="controllNo" value="#{c.controllno}"/>
+                    <h:message for="controllNo" class="error"/>     
+                </p:dataGrid>
+            </h:form>
+        </h:panelGroup>   
+        <h:form>
+
+            <p:commandButton action="delivery.xhtml" value="Zur Lieferadresse" />
+
+
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+

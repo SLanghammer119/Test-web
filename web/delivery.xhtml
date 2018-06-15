@@ -1,0 +1,41 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <h:form id="delivery">
+            <p:dataGrid columns="2" value="#{shoppingCartCtrl.shoppingcart.customer.deliveryadresses}" var="del">   
+                <h:outputLabel for="inFirst" value="#{msg.firstname}" />
+                <h:inputText id ="inFirst" value="#{del.firstname}"/>
+                <h:message for="inFirst" class="error"/>
+                
+                <h:outputLabel for="inLast" value="#{msg.lastname}" />
+                <h:inputText id="inLast" value="#{del.lastname}"/>
+                <h:message for="inLast" class="error"/>        
+
+                <h:outputLabel for="inStreet" value="#{msg.street}" />
+                <h:inputText id ="inStreet" value="#{del.street}"/>
+                <h:message for="inStreet" class="error"/> 
+                
+                <h:outputLabel for="inHouse" value="#{msg.houseNo}" />
+                <h:inputText id="inHouse" value="#{del.houseno}"/>
+                <h:message for="inHouse" class="error"/> 
+
+                <h:outputLabel for="inPost" value="#{msg.postcode}" />
+                <h:inputText id ="inPost" value="#{del.postcode}" validator="postcodeValidator"/>
+                <h:message for="inPost" class="error"/> 
+                
+                <h:outputLabel for="inTown" value="#{msg.town}" />
+                <h:inputText id="inTown" value="#{del.town}"/>
+                <h:message for="inTown" class="error"/> 
+
+                <h:outputLabel for="inCount" value="#{msg.country}" />
+                <h:inputText id="inCount" value="#{del.country}"/>
+                <h:message for="inCount" class="error"/>     
+            </p:dataGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
